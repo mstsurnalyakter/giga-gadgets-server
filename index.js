@@ -29,22 +29,13 @@ async function run() {
   try {
     const productCollection = client.db("brandStore").collection("products");
 
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
 
 
-    app.post("/addProduct", async (req, res) => {
-      console.log(req.body);
+    app.post("/addProduct", async(req,res)=>{
       const result = await productCollection.insertOne(req.body);
-      console.log(result);
-      res.send(result)
-    })
+      res.send(result);
+    });
 
-    app.get("/myProduct/:email", async (req, res) => {
-      console.log(req.params.email);
-      const result = await productCollection.find({ email: req.params.email }).toArray();
-      res.send(result)
-    })
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
