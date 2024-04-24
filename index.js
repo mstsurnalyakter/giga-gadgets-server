@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 // config
@@ -27,7 +28,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const productCollection = client.db("brandStore").collection("products");
-  
+
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
 
