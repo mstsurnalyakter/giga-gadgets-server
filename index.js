@@ -51,7 +51,7 @@ async function run() {
        console.log(result);
      });
 
-     app.post("/singleProduct/:id", async (req, res) => {
+     app.put("/updateProduct/:id", async (req, res) => {
        const filter = { _id: new ObjectId(req.params.id) };
         const updatedProduct = req.body;
        const options = { upsert: true };
@@ -70,6 +70,18 @@ async function run() {
        const result = await productCollection.updateOne(filter, updateDoc, options);
        res.send(result);
      });
+
+     app.delete("/deleteProduct/:id", async(req,res)=>{
+
+      const result = await productCollection.deleteOne({
+        _id: new ObjectId(req.params.id)
+      });
+
+      res.send(result)
+
+
+
+     })
 
 
     console.log(
